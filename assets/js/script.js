@@ -43,23 +43,24 @@ const displayAverageSalary = function (employeesArray) {
 
     totalSal.push(employeePay);
     // check to make sure employee salary was added and log in console
-    console.log(`${totalSal[i]} is pushed`);
+    // console.log(`${totalSal[i]} is pushed`);
   }
   // reduce array by adding salaries and combining into one variable
   const totalPayout = totalSal.reduce((accumulator, total) => {
     return total + accumulator;
   }, 0);
-  console.log(`${totalPayout} is the total salary payout.`);
+  // console.log(`${totalPayout} is the total salary payout.`);
+
+  let numberOfEmployees = employeesArray.length;
   // Get average of all salaries
-  let averageSalary = (totalPayout / employeesArray.length).toLocaleString(
-    "en-US",
-    {
-      style: "currency",
-      currency: "USD",
-    }
-  );
+  let averageSalaryWithTwoDecimals = (
+    totalPayout / numberOfEmployees
+  ).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   console.log(
-    `The average employee salary between our ${employeesArray.lenth} employee(s) is ${averageSalary} when given salaries with no decimals.`
+    `The average employee salary between our ${numberOfEmployees} employee(s) is ${averageSalaryWithTwoDecimals} when given salaries with no decimals.`
   );
   // Create a final employee entry that will sort at the top of the list and display total average.
   const totalRow = {
@@ -77,7 +78,7 @@ const getRandomEmployee = function (employeesArray) {
 
   // create a random number in the range of our employee list
   const rand = Math.floor(Math.random() * employeesArray.length);
-  console.log(`${rand} is my random #`);
+  // console.log(`${rand} is my random #`);
   let randomSelection = employeesArray[rand];
   // return the employee at that random index
   console.log(
