@@ -4,23 +4,30 @@ const addEmployeesBtn = document.querySelector("#add-employees-btn");
 // Collect employee data
 const collectEmployees = function () {
   // TODO: Get user input to create and return an array of employee objects
+
+  // Create true condition for while
   let moreEmployees = true;
+  // create list to return
   const employeeList = [];
+  // while adding...
   while (moreEmployees) {
+    // Promt for user details and save them in employee object
     const fName = prompt("Enter First Name: ");
     const lName = prompt("Enter last Name: ");
     const pay = parseInt(prompt("Enter salary in USD: "));
     const employee = { firstName: fName, lastName: lName, salary: pay };
+    // Add object to array
     employeeList.push(employee);
-
+    // prompt for more employees
     let employeePrompt = confirm(`Do you want to add another employee?`);
     if (employeePrompt) {
       moreEmployees = true;
     } else {
+      // break while loop
       moreEmployees = false;
     }
   }
-
+  // return newly created list
   return employeeList;
   // console.log(employeeList);
 };
@@ -28,24 +35,31 @@ const collectEmployees = function () {
 // Display the average salary
 const displayAverageSalary = function (employeesArray) {
   // TODO: Calculate and display the average salary
+  // create array of all salaries
   const totalSal = [];
+  // add each employee's salary
   for (let i = 0; i < employeesArray.length; i++) {
     let employeePay = employeesArray[i].salary;
 
     totalSal.push(employeePay);
+    // check to make sure employee salary was added and log in console
     console.log(`${totalSal[i]} is pushed`);
   }
+  // reduce array by adding salaries and combining into one variable
   const totalPayout = totalSal.reduce((accumulator, total) => {
     return total + accumulator;
   }, 0);
   console.log(`${totalPayout} is the total salary payout.`);
+  // Get average of all salaries
   let averageSalary = totalPayout / employeesArray.length;
   console.log(`${averageSalary} is the average salary`);
+  // Create a final employee entry that will sort at the top of the list and display total average.
   const totalRow = {
     firstName: "EMPLOYEE AVERAGE",
     lastName: "",
     salary: averageSalary,
   };
+  // add the totals row the employee array.
   employeesArray.push(totalRow);
 };
 
@@ -53,9 +67,11 @@ const displayAverageSalary = function (employeesArray) {
 const getRandomEmployee = function (employeesArray) {
   // TODO: Select and display a random employee
 
+  // create a random number in the range of our employee list
   const rand = Math.floor(Math.random() * employeesArray.length);
   console.log(`${rand} is my random #`);
   let randomSelection = employeesArray[rand];
+  // return the employee at that random index
   return randomSelection;
 };
 
