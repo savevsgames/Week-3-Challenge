@@ -51,8 +51,16 @@ const displayAverageSalary = function (employeesArray) {
   }, 0);
   console.log(`${totalPayout} is the total salary payout.`);
   // Get average of all salaries
-  let averageSalary = totalPayout / employeesArray.length;
-  console.log(`${averageSalary} is the average salary`);
+  let averageSalary = (totalPayout / employeesArray.length).toLocaleString(
+    "en-US",
+    {
+      style: "currency",
+      currency: "USD",
+    }
+  );
+  console.log(
+    `The average employee salary between our ${employeesArray.lenth} employee(s) is ${averageSalary} when given salaries with no decimals.`
+  );
   // Create a final employee entry that will sort at the top of the list and display total average.
   const totalRow = {
     firstName: "EMPLOYEE AVERAGE",
@@ -72,6 +80,9 @@ const getRandomEmployee = function (employeesArray) {
   console.log(`${rand} is my random #`);
   let randomSelection = employeesArray[rand];
   // return the employee at that random index
+  console.log(
+    `Congratulations to ${randomSelection.firstName} ${randomSelection.lastName} our random employee winner!`
+  );
   return randomSelection;
 };
 
